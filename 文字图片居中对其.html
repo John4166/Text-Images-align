@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>未知行数的文字，未知大小的图片垂直居中方法</title>
+    <style>
+        .unKownLineBox {
+            width: 300px;/*!这是重点*/
+            height: 200px; /*!这是重点*/
+            display: table-cell; /*!这是重点*/
+            vertical-align: middle; /*!这是重点*/
+            border: 3px solid #5f9aff;
+            font-size: 14px;
+            padding: 0 10px;
+        }
+
+        .unKownLine-text {
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        .moreImgBox-1 {
+            margin: 10px 0;
+            display: inline-block; /*!这是重点*/
+            font-size: 33px; /*!这是重点*/
+            vertical-align: middle; /*!这是重点*/
+            text-align: center;
+            border: 2px solid #5f9aff;
+            padding: 10px;
+        }
+        .moreImgBox-1 a{
+            display: inline-block;
+        }
+        .moreImgBox-1 a img {
+            vertical-align: middle;
+            border: 1px solid #00C1B3;
+            padding: 2px;
+        }
+
+        .moreImgBox-2 {
+            margin: 10px 0;
+        }
+
+        .moreImgBox-2 ul {
+            overflow: hidden;
+            zoom: 1;
+            margin: 0;
+            padding: 0;
+        }
+
+        .moreImgBox-2 ul li {
+            list-style: none;
+            float: left; /*!这两段是重点*/
+            margin-right: 13px;
+        }
+
+        .moreImgBox-2 ul li a {
+            display: table-cell; /*!这两段是重点*/
+            font-size: 100px; /*!这两段是重点 一定要大*/
+            vertical-align: middle;
+            text-align: center;
+        }
+
+        .moreImgBox-2 ul li img {
+            vertical-align: middle;
+        }
+
+        .singleImgBox-1 {
+            width: 300px;
+            height: 300px;
+            background-color: #beceeb;
+            font-size: 0;
+            *font-size: 200px;
+            text-align: center;
+        }
+
+        .singleImgBox-1 a img {
+            vertical-align: middle;
+        }
+
+        .singleImgBox-1:after {  /*!这两段是重点*/
+            display: inline-block;
+            width: 0;
+            height: 100%;
+            content: "center";
+            vertical-align: middle;
+            overflow: hidden;
+        }
+
+        .singleImgBox-2 {
+            position: relative;/*!这两段是重点*/
+            display: block;
+            width: 300px;/*!这两段是重点*/
+            height: 300px;/*!这两段是重点*/
+            background-color: #5f9aff;
+        }
+
+        .singleImgBox-2 img {
+            position: absolute;/*!这两段是重点*/
+            top: 0;  left: 0;  right: 0;  bottom: 0;
+            margin: auto;/*!这两段是重点*/
+        }
+
+        .textImgBox-1 span, .textImgBox-1 img {
+            vertical-align: middle;/*!这两段是重点*/
+        }
+
+        .layout-ul{
+            width: 100%;
+            overflow: auto;/*去除浮动*/
+        }
+        .layout-ul li{
+            position: relative;
+            float: left;
+            width: 50%;
+            list-style: none;
+            height: auto;
+
+        }
+        .layout-ul .title{
+            display: inline-block;
+            position:absolute;
+            top: 0;
+            left: 0;
+            width: 120px;
+            text-align: right;
+
+        }
+        .layout-ul .content{
+            display: block;
+            margin-left: 120px;
+            padding-left: 10px;
+            position: relative;
+            margin-top: 15px;
+        }
+        .layout-ul .content textarea{
+            height: 200px;
+            width: 167px;
+        }
+        .layout-ul .tip-msg{
+            position: absolute;
+            top: 0px;
+            /*bottom:0px;/!*改top为bottom,则文字就跟输入框底部对齐*!/*/
+            left: 190px;
+            white-space: nowrap;/*防止文字换行*/
+        }
+
+    </style>
+</head>
+<body>
+<!--多行文本垂直居中法-->
+<div class="unKownLineBox">
+    <span class="unKownLine-text">
+            第一行文字
+        <br>第二行文字
+        <br>第二行文字
+    </span>
+</div>
+
+<!--多图片垂直居中法-->
+<div class="moreImgBox-1">
+    <a class="moreImgItem-1"><img src="images/111.png"></a>
+    <a class="moreImgItem-1"><img src="images/222.png"></a>
+    <a class="moreImgItem-1"><img src="images/333.jpeg"></a>
+</div>
+
+<div class="moreImgBox-2">
+    <ul>
+        <li><a><img src="images/111.png"></a></li>
+        <li><a><img src="images/222.png"></a></li>
+        <li><a><img src="images/333.jpeg"></a></li>
+    </ul>
+</div>
+
+<!--单图片垂直居中方法-->
+<div class="singleImgBox-1">
+    <a><img src="images/333.jpeg"></a>
+</div>
+
+<div class="singleImgBox-2">
+    <img src="images/333.jpeg">
+</div>
+
+
+<!--文字和图片垂直居中方法-->
+<div class="textImgBox-1">
+    <span>text</span>
+    <img src="images/222.png">
+</div>
+
+<!--左文本标题右不定数量的元素-->
+<ul class="layout-ul" id="layout-ul">
+    <li>
+        <div class="title">input标题</div>
+        <div class="content">
+            <input type="text"/>
+            <div class="tip-msg">tip-message</div>
+        </div>
+        <div class="content">
+            <textarea name="textarea"></textarea>
+            <div class="tip-msg">tip-message</div>
+        </div>
+
+    </li>
+    <li>
+        <div class="title">input标题</div>
+        <div class="content">
+            <input type="text"/>
+            <div class="tip-msg">tip-message</div>
+        </div>
+        <div class="content">
+            <textarea name="textarea" ></textarea>
+            <div class="tip-msg">tip-message</div>
+        </div>
+
+    </li>
+    <li>
+        <div class="content">
+           <button class="btn">提交</button>
+           <button class="btn">提交</button>
+           <button class="btn">提交</button>
+        </div>
+    </li>
+</ul>
+
+</body>
+</html>
